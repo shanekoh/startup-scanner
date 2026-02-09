@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Startup {
+  id            String   @id @default(cuid())
+  name          String
+  url           String?
+  ycUrl         String?
+  ycBatch       String?
+  industry      String?
+  summary       String?
+  founders      String?
+  leadInvestor  String?
+  fundingStage  String?
+  fundingAmount String?
+  jobs          Job[]
+  createdAt     DateTime @default(now())
+}
+
+model Job {
+  id        String  @id @default(cuid())
+  title     String
+  url       String?
+  startup   Startup @relation(fields: [startupId], references: [id])
+  startupId String
+  source    String
+}
+
+model Newsletter {
+  id        String    @id @default(cuid())
+  subject   String
+  html      String
+  sentAt    DateTime?
+  createdAt DateTime  @default(now())
+}

@@ -9,9 +9,15 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.74.0",
+    "@prisma/client": "^7.3.0",
+    "cheerio": "^1.2.0",
+    "dotenv": "^17.2.4",
     "next": "16.1.6",
+    "prisma": "^7.3.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "resend": "^6.9.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
