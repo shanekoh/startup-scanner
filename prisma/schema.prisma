@@ -2,12 +2,13 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
 }
 
 datasource db {
   provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
 model Startup {
@@ -41,4 +42,23 @@ model Newsletter {
   html      String
   sentAt    DateTime?
   createdAt DateTime  @default(now())
+}
+
+model Source {
+  id      String  @id @default(cuid())
+  type    String  // rss, api, twitter
+  name    String
+  url     String
+  enabled Boolean @default(true)
+}
+
+model Keyword {
+  id      String  @id @default(cuid())
+  term    String  @unique
+  enabled Boolean @default(true)
+}
+
+model Config {
+  id    String @id @default("singleton")
+  email String
 }
